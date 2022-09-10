@@ -20,7 +20,11 @@
                 </div>
                 <div class = "col">
                      {{!-- login/logout button  --}}
-                    <h2 class = "text-end">log</h2>
+                    {{#if loggedIn}}
+                      <a class="nav-link" href="/logout" id="logout">Logout</a>
+                    {{else}}
+                      <a class="nav-link" href="/login">Login/Sign-up</a>
+                    {{/if}}
                 </div>
             </div>
         </div>
