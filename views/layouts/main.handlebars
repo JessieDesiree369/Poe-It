@@ -23,7 +23,7 @@
                     {{#if loggedIn}}
                       <a class="nav-link" href="/logout" id="logout">Logout</a>
                     {{else}}
-                      <a class="nav-link" href="/login">Login/Sign-up</a>
+                      <a class="nav-link text-end" href="/login">Login/Sign-up</a>
                     {{/if}}
                 </div>
             </div>
@@ -31,17 +31,19 @@
         <div class = "container-fluid bg-dark"></div>
             <div class = "row-fluid align-items-end pt-2">
                 <div class = "col">
-                    <ul class="nav nav-tabs nav-fill border-0">
-                        <li class="nav-item mx-2">
-                          <a class="nav-link active bg-success link-light border-0" aria-current="page" href="#">Explore</a>
-                        </li>
-                        <li class="nav-item mx-2">
-                          <a class="nav-link bg-success link-light border-0" href="#">Library</a>
-                        </li>
-                        <li class="nav-item mx-2">
-                          <a class="nav-link bg-success link-light border-0" href="#">Create</a>
-                        </li>
-                      </ul>
+                      {{#if loggedIn}}
+                        <ul class="nav nav-tabs nav-fill border-0">
+                          <li class="nav-item mx-2">
+                            <a class="nav-link active bg-success link-light border-0" aria-current="page" href="#">Explore</a>
+                          </li>
+                          <li class="nav-item mx-2">
+                            <a class="nav-link bg-success link-light border-0" href="#">Library</a>
+                          </li>
+                          <li class="nav-item mx-2">
+                            <a class="nav-link bg-success link-light border-0" href="#">Create</a>
+                          </li>
+                        </ul>
+                      {{/if}}
                 </div>
                 
             </div>
