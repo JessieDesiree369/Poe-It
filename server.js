@@ -1,13 +1,36 @@
 const path = require("path");
 const express = require("express");
-const session = require("express-session");
-const { sequelize, sessionConfig } = require("./config/connection");
-const exphbs = require("express-handlebars");
-const controllers = require("./controllers");
-const helpers = require("./utils/helper.js");
+
+const session =require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
+const sess ={
+    secret: 'keep your password safe',
+    cookie: {},
+    resave: false,
+    saveUnitialized:true,
+    store: new SequelizeStore({
+        db: sequelize,
+    });
+},
 
 const app = express();
-const PORT = process.env.PORT || 3006;
+const PORT = process.env.PORT || 3000;
+const sequelize = require("./ config/connection");
+const controllers = require("./controllers");
+const {Poem, User} = require("./models");
+
+app.use (express.json());
+app.use(express.urlencoded({ extended: true}));
+
+
+app.use(controllers);
+
+
+sequelize.sync({force: false}).then(()=>{
+    app.listen(PORT, () => console.log("doing the thing fr fr"));
+});
+}
 const hbs = exphbs.create({ helpers });
 
 //app.use(app.router);
@@ -27,5 +50,3 @@ sequelize.sync({ force: true }).then(() => {
 // app.get("/", async (req, res) => {
 //     res.send("Werking.");
 // })
-
-// app.listen(PORT, () => console.log("doing the thing fr fr"))

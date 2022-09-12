@@ -1,29 +1,26 @@
-const { Model, DataTypes } = require("sequelize");
-const { sequelize } = require("../config/connection");
+
+const { Model, DataTypes}= require ("sequelize");
 
 class Poem extends Model {}
 
-Poem.init(
-  {
-    PoemId: {
-      type: DataTypes.STRING,
+Poem.init({
+    Id: {
+        type: DataTypes.INTEGER ,
     },
     title: {
-      type: DataTypes.STRING,
+        type: DataTypes.STRING,
     },
-    author: {
-      type: DataTypes.STRING,
+    author:{
+        type: DataTypes.STRING,
     },
-    description: {
-      type: DataTypes.STRING,
+    lines: {
+        type: DataTypes.STRING,
     },
-    image: {
-      type: DataTypes.STRING,
-    },
-  },
-  {
+  
+{ 
     sequelize,
-  }
+}
+   
 );
 
 module.exports = Poem;

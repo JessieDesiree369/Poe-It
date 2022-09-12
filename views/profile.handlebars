@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row row-cols-3 g-4">
+    {{#each poems}}
+      <div class="col">
+          <div class="card-body">
+            <h5
+              class="card-title"
+              id="title-{{this.id}}"
+            >{{this.id}}</h5>
+            <p class="card-text" id="desc-{{this.id}}">{{truncate
+                this.lines
+              }}</p>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>

@@ -1,29 +1,19 @@
-const { User } = require("../../models");
 
-const router = require("express").Router();
+const { User } =require ("../..models");
 
-/**
- * /api/user
- */
-router.get("/", async (req, res) => {
-  if (req.session.loggedIn) {
-    return res.json({ message: "YOURE IN THERE!" });
-  } else {
-    return res.json({ message: "YOURE OUTTA THERE" });
-  }
+const router =require("express").Router();
+
+router.get ("/", async (req,res)=>{
+  res.end();
 });
 
-/**
- * Create a new User Route
- * /api/user
- */
-router.post("/", async (req, res) => {
-  const { username, email, password } = req.body;
-
-  if ((!username, !email, !password)) {
+router.post("/", async(req, res)=>{
+  const { username, email, password}= req.body;
+  if (( !username, !email,!password)){
     return res
       .status(400)
-      .json({ message: "You did not give me all the info!" });
+      .json({ message: " log in failed"});
+
   }
   try {
     const newUser = await User.create({
@@ -31,65 +21,11 @@ router.post("/", async (req, res) => {
       email,
       password,
     });
-    req.session.save(() => {
-      req.session.loggedIn = true;
-      req.session.userId = newUser.id;
-      return res.status(201).json(newUser);
-    });
+    return res.status(201).json(newUser);
+
   } catch (error) {
-    console.log("🚀 ~ file: user.js ~ line 26 ~ router.post ~ error", error);
     return res
       .status(500)
-      .json({ message: "Something has gone terribly wrong" });
+      .json({message: "error "});
   }
 });
-
-/**
- * Create a new User Route
- * /api/user/login
- */
-router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-
-  if ((!email, !password)) {
-    return res
-      .status(400)
-      .json({ message: "You did not give me all the info!" });
-  }
-
-  try {
-    const user = await User.findOne({
-      where: {
-        email,
-      },
-    });
-
-    const isValidPassword = user.checkPassword(password);
-
-    if (isValidPassword) {
-      req.session.save(() => {
-        req.session.loggedIn = true;
-        req.session.userId = user.id;
-        return res.status(200).json(user);
-      });
-    } else {
-      res.status(404).json({ message: "Some of your info is bad bruh" });
-    }
-  } catch (error) {
-    console.log("🚀 ~ file: user.js ~ line 26 ~ router.post ~ error", error);
-    return res
-      .status(500)
-      .json({ message: "Something has gone terribly wrong" });
-  }
-});
-/**
- * Logout
- * /api/user/login
- */
-router.post("/logout", async (req, res) => {
-  req.session.destroy(() => {
-    res.status(204).end();
-  });
-});
-
-module.exports = router;
