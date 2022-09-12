@@ -1,37 +1,42 @@
 const router = require("express").Router();
-//const axios = require("axios");
+const axios = require("axios");
+
 const { Book } = require("../../models");
 
-router.get("/", async (req, res) => {
-  const loggedIn = req.session.loggedIn;
-  console.log("🚀 ~ file: home.js ~ line 7 ~ router.get ~ loggedIn", loggedIn);
 
-  res.render("home", {
+router.get("/", async(req,res)=>{
+  const loggedIn = req.session.loggedIn;
+
+  res.render("home",{
     loggedIn,
   });
+
 });
 
-router.get("/profile", async (req, res) => {
-  const UserId = req.session.userId;
-  const loggedIn = req.session.loggedIn;
+router.get("/search/:term", async(req,res)=>{
+  const term =req.params.term;
 
-  try {
-    const dbBooks = await Book.findAll({
-      where: {
-        UserId,
-      },
-    });
-    const books = dbBooks.map((book) => book.get({ plain: true }));
-    res.render("profile", {
-      books,
-      loggedIn,
-    });
-  } catch (error) {
-    console.log("🚀 ~ file: user.js ~ line 26 ~ router.post ~ error", error);
-    return res
-      .status(500)
-      .json({ message: "Something has gone terribly wrong" });
-  }
+
+
+  const axiosResponse = await axios.get(`https://thundercomb-poetry-db-v1.p.rapidapi.com/?q=${term}`);
+
+  const poems =axiosResponse.data.items.map((item)=>{
+    return{
+      poemId: item.id,
+      title: item.volumeInfo.title,
+      authors: item.volumeInfo.authors,
+      lines: item.volumeInfo.lines,
+    };
+    // where does the volumeInfo come from?
+  });
+  return res.json(poems);
+});
+
+router.get("/login", async(req,res)=>{
+  const loggedIn =req.session.loggedIn;
+  res.render("login", {
+    loggedIn,
+  });
 });
 
 module.exports = router;
