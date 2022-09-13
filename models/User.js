@@ -13,6 +13,11 @@ User.init(
     username: {
       type: DataTypes.STRING ,
       allowNull: false,
+      unique: true,
+      validate: {
+        notNull: true,
+        notEmpty: true
+      }
     },
     email: {
       type: DataTypes.STRING,
@@ -27,9 +32,30 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate:{
+        notNull: true,
+        notEmpty: true,
         len:[10],
       },
     },
+  },
+  {
+    classMethods: {
+      validPassword: function(password, pw, done, user){
+        bcrypt.compare(password, pw, function(err, isMatch){
+          if(err) {
+            console.log(err);
+          }
+          if(isMatch) {
+            return done(null, user);
+          } else {
+            return done(null, false);
+          }
+        });
+      }
+    }
+  },
+  {
+    dialect: "mysql"
   },
   {
     hooks: {
