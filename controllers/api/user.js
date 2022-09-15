@@ -5,9 +5,9 @@ const router = require("express").Router();
 
 router.get("/", async (req,res) => {
   if (req.session.loggedIn) {
-    return res.json({ message: "YOURE IN THERE!" });
+    return res.json({ message: "Logged in!" });
   } else {
-    return res.json({ message: "YOURE OUTTA THERE" });
+    return res.json({ message: "Logout!" });
   }
 });
 
@@ -43,7 +43,7 @@ router.post("/login", async (req, res) => {
   if ((!email, !password)) {
     return res
       .status(400)
-      .json({ message: "You did not give me all the info!" });
+      .json({ message: "more info needed!" });
   }
 
   try {
@@ -62,13 +62,13 @@ router.post("/login", async (req, res) => {
         return res.status(200).json(user);
       });
     } else {
-      res.status(404).json({ message: "Some of your info is bad bruh" });
+      res.status(404).json({ message: "try again" });
     }
   } catch (error) {
-    console.log("🚀 ~ file: user.js ~ line 26 ~ router.post ~ error", error);
+ 
     return res
       .status(500)
-      .json({ message: "Something has gone terribly wrong" });
+      .json({ message: "error, run!" });
   }
 });
 
