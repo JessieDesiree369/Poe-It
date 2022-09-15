@@ -13,22 +13,25 @@
 
 <body class = "bg-dark">
 
-        <div class = "container-fluid bg-success text-white">
+        <div class = "container-fluid bg-success text-white title-bar">
             <div class = "row align-items-center">
-                <div class = "col">
-                    <img class = "img" height = "40" width = "40" src = "../../images/quill.svg"><h1 class = "text-start"> Poe-It</h1>
+                <div class = "col leftnav">
+                    <h1 class = "text-start"><img id = "quillsvg" class = "img" height = "40" width = "40" src = "../../images/quill.svg"> Poe-It</h1>
                 </div>
-                <div class = "col">
+                <div class = "col rightnav">
                      {{!-- login/logout button  --}}
                     {{#if loggedIn}}
-                      <a class="nav-link" href="/logout" id="logout">Logout</a>
+                      <a class="nav-link text-end" href="#" id="logout">Logout</a>
                     {{else}}
                       <a class="nav-link text-end" href="/login">Login/Sign-up</a>
                     {{/if}}
                 </div>
             </div>
         </div>
+
         <div class = "container-fluid bg-dark"></div>
+
+        <div class = "main-body">
             <div class = "row-fluid align-items-end pt-2">
                 <div class = "col">
                       {{#if loggedIn}}
@@ -47,17 +50,23 @@
                 </div>
                 
             </div>
+        
+          <div class = "container-fluid bg-success">
+              <div class = "row-fluid align-items-start py-3">
+                  {{{ body }}}
+              </div>
+          </div>
         </div>
-        <div class = "container-fluid bg-success">
-            <div class = "row-fluid align-items-start py-3">
-                {{{ body }}}
-            </div>
-        </div>
-
 
 
   {{!-- Bootstrap JavaScript Bundle with Popper  --}}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+{{#if loggedIn}}
+  <script src="./js/logout.js"></script>
+{{/if}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="./js/navbar.js"></script>
+
 </body>
 
 </html>
