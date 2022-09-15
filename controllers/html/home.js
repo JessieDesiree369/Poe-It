@@ -14,9 +14,7 @@ router.get("/", async(req,res)=>{
 router.get("/search/:term", async(req,res)=>{
   const term =req.params.term;
 
-
-
-  const axiosResponse = await axios.get(`https://thundercomb-poetry-db-v1.p.rapidapi.com/?q=${term}`);
+  const axiosResponse = await axios.get(`https://poetrydb.org/title/${term}`);
 
   const poems =axiosResponse.data.items.map((item)=>{
     return{
