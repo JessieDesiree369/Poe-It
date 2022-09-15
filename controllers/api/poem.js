@@ -2,10 +2,9 @@ const { Poem } = require("../../models");
 const router = require("express").Router();
 const { withAuth } = require("../../utils");
 
-/**
- * Create a Poems
- * /api/Poem
- */
+
+//  Create a Poems
+
 router.post("/", withAuth, async (req, res) => {
   const { title, image, description } = req.body;
   const UserId = req.session.userId;
@@ -14,24 +13,23 @@ router.post("/", withAuth, async (req, res) => {
     const newPoem = await Poem.create({
       title,
       image,
-      author: "Dan Gross - Best Author Ever",
+      author: "James Baldwin ",
       description,
       UserId,
     });
 
     res.json(newPoem);
   } catch (error) {
-    console.log("🚀 ~ file: user.js ~ line 26 ~ router.post ~ error", error);
+   
     return res
       .status(500)
-      .json({ message: "Something has gone terribly wrong" });
+      .json({ message: "oops! something is wrong" });
   }
 });
 
-/**
- * Get Poems by User
- * /api/Poem
- */
+
+  // Get Poems by User
+
 router.get("/", withAuth, async (req, res) => {
   const UserId = req.session.userId;
 
@@ -44,10 +42,10 @@ router.get("/", withAuth, async (req, res) => {
     dbPoems.map((Poem) => Poem.get({ plain: true }));
     res.status(200).json(dbPoems);
   } catch (error) {
-    console.log("🚀 ~ file: user.js ~ line 26 ~ router.post ~ error", error);
+    
     return res
       .status(500)
-      .json({ message: "Something has gone terribly wrong" });
+      .json({ message: "try again" });
   }
 });
 
