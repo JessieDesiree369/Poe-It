@@ -17,9 +17,7 @@ app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 app.use(express.static(path.join(__dirname, "public")));
 
-
 app.use(controllers);
-
 
 sequelize.sync({force: false}).then(()=>{
   app.listen(PORT, () => console.log("doing the thing fr fr"));

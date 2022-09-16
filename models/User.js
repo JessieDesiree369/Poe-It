@@ -38,7 +38,6 @@ User.init(
       },
     },
   },
-  
 
   {
     hooks: {
