@@ -6,7 +6,7 @@ const mainBody = document.querySelectorAll(".main-body");
 const titleBar = document.querySelectorAll(".title-bar");
 
 // --------- moveDuration sets how long all animations take in milliseconds
-const moveDuration = 500;
+const moveDuration = 600;
 
 const mainLoadTL = anime.timeline({
   easing: "easeOutSine",
@@ -44,16 +44,16 @@ anime({
   easing: "easeInSine"
 });
 
-anime({
-  targets: ".path",
-  strokeDashoffset: [anime.setDashoffset, 0],
-  easing: "easeInOutSine",
-  delay: function(el, i) {
-    return i * 250;
-  },
-  direction: "alternate",
-  loop: true
-});
+// anime({
+//   targets: ".path",
+//   strokeDashoffset: [anime.setDashoffset, 0],
+//   easing: "easeInOutSine",
+//   delay: function(el, i) {
+//     return i * 250;
+//   },
+//   direction: "alternate",
+//   loop: true
+// });
 
 // document
 //   .querySelector(".login-form")

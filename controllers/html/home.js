@@ -1,3 +1,5 @@
+//import fetch from 'node-fetch';
+
 const router = require("express").Router();
 const axios = require("axios");
 const { Poem } = require("../../models");
@@ -12,25 +14,41 @@ router.get("/", async(req,res)=>{
 });
 
 router.get("/search/:term", async(req,res)=>{
-  const term =req.params.term;
+  //const term =req.params.term;
+  //console.log(`term: ${term}`);
 
-  const axiosResponse = await axios.get(`https://poetrydb.org/title/${term}`);
-
-  const poems =axiosResponse.data.items.map((item)=>{
-    return{
-      poemId: item.id,
-      title: item.volumeInfo.title,
-      authors: item.volumeInfo.authors,
-      lines: item.volumeInfo.lines,
-    };
-    // where does the volumeInfo come from?
-  });
-  return res.json(poems);
 });
+//return res.json(poems);
+//});
 
 router.get("/login", async(req,res)=>{
   const loggedIn =req.session.loggedIn;
   res.render("login", {
+    loggedIn,
+  });
+});
+
+router.get("/favorites", async(req,res)=>{
+  const loggedIn =req.session.loggedIn;
+  res.render("profile", {
+    loggedIn,
+  });
+});
+
+router.get("/compose", async(req,res)=>{
+  const loggedIn =req.session.loggedIn;
+  res.render("compose", {
+    loggedIn,
+  });
+});
+
+router.get("/results/:term", async(req,res)=>{
+  const term =req.params.term;
+  const loggedIn =req.session.loggedIn;
+  if (!term || term === "...") {
+    res.end();
+  }
+  res.render("results", {
     loggedIn,
   });
 });
