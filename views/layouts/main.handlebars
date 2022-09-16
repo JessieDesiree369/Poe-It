@@ -37,18 +37,17 @@
                       {{#if loggedIn}}
                         <ul class="nav nav-tabs nav-fill border-0">
                           <li class="nav-item mx-2">
-                            <a class="nav-link active bg-success link-light border-0" aria-current="page" href="#">Explore</a>
+                            <a class="nav-link active bg-success link-light border-0" aria-current="page" href="/">Search</a>
                           </li>
                           <li class="nav-item mx-2">
-                            <a class="nav-link bg-success link-light border-0" href="#">Library</a>
+                            <a class="nav-link bg-success link-light border-0" href="/favorites">Favorites</a>
                           </li>
                           <li class="nav-item mx-2">
-                            <a class="nav-link bg-success link-light border-0" href="#">Create</a>
+                            <a class="nav-link bg-success link-light border-0" href="/compose">Compose</a>
                           </li>
                         </ul>
                       {{/if}}
                 </div>
-                
             </div>
         
           <div class = "container-fluid bg-success">
@@ -62,10 +61,10 @@
   {{!-- Bootstrap JavaScript Bundle with Popper  --}}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 {{#if loggedIn}}
-  <script src="./js/logout.js"></script>
+  <script src="../js/logout.js"></script>
 {{/if}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-<script src="./js/navbar.js"></script>
+<script src="../js/navbar.js"></script>
 
 </body>
 

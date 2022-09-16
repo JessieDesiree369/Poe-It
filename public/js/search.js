@@ -6,7 +6,7 @@ const handlePoemSearch = async (event) => {
   const searchElement = document.querySelector("#search").value.trim();
 
   if (searchElement) {
-    document.location.replace(`/search/${searchElement}`);
+    document.location.replace(`/results/${searchElement}`);
   }
 };
 

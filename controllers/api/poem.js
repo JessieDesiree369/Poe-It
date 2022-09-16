@@ -20,7 +20,7 @@ router.post("/", withAuth, async (req, res) => {
 
     res.json(newPoem);
   } catch (error) {
-   
+
     return res
       .status(500)
       .json({ message: "oops! something is wrong" });
@@ -28,7 +28,7 @@ router.post("/", withAuth, async (req, res) => {
 });
 
 
-  // Get Poems by User
+// Get Poems by User
 
 router.get("/", withAuth, async (req, res) => {
   const UserId = req.session.userId;
@@ -42,7 +42,7 @@ router.get("/", withAuth, async (req, res) => {
     dbPoems.map((Poem) => Poem.get({ plain: true }));
     res.status(200).json(dbPoems);
   } catch (error) {
-    
+
     return res
       .status(500)
       .json({ message: "try again" });

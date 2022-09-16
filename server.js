@@ -9,8 +9,6 @@ const helpers = require("./utils/helper.js");
 const PORT = process.env.PORT || 3006;
 const app = express();
 const hbs = exphbs.create({ helpers });
-const passport = require("passport");
-const passportConfig = require("./config/passport");
 
 app.use(session(sessionConfig));
 app.use (express.json());
