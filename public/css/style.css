@@ -1,0 +1,12 @@
+body {
+    font-family: 'Philosopher', sans-serif;
+}
+
+.cornFlower {
+    background-color: rgb(150, 180, 234);
+}
+
+.wider {
+    border: 6px;
+    padding: 18px;
+}
