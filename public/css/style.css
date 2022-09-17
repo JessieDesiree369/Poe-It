@@ -3,7 +3,7 @@ body {
 }
 
 .cornFlower {
-    background-color: rgb(150, 180, 234);
+    background-color: rgb(150*0.4, 180*0.4, 234*0.4);
 }
 
 .wider {

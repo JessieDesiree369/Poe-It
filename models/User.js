@@ -36,6 +36,7 @@ User.init(
         notEmpty: true,
         len:[10],
       },
+
     },
   },
 

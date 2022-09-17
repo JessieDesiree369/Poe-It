@@ -1,24 +1,3 @@
-
-const getResults = async () => {
-  const urlArray = (document.location.href).split("/");
-  const term = urlArray[urlArray.length-1];
-
-  const response1 = fetch(`https://poetrydb.org/author/${term}`);
-  //const data1 = await response1.json();
-
-  const response2 = fetch(`https://poetrydb.org/title/${term}`);
-  //const data2 = await respdddonse2.json();
-
-  const response3 = fetch(`https://poetrydb.org/lines/${term}`);
-  //const data3 = await response3.json();
-
-  const results = await Promise.all([response1,response2,response3]);
-  const jsondata = await Promise.all([results[0].json(),results[1].json(),results[2].json()]);
-
-  jsondata.forEach(result => console.log(result));
-
-};
-
 const getAllResults = async () => {
   const urlArray = (document.location.href).split("/");
   const term = urlArray[urlArray.length-1];
@@ -39,12 +18,23 @@ const getAllResults = async () => {
 };
 
 getAllResults().then((data) => {
-  const combinedResults = [];
+
+  let combinedResults = []; // --------- Create an array to hold search result objects
+  let titleAuthorList = []; // --------- Create an array to hold easily comparable String IDs
   data.forEach((arr) => {
-    arr.forEach((element) => combinedResults.push(element));
+    // --------- Combine each list of results that
+    // --------- is actually an array/has any results
+    if(Array.isArray(arr)) {
+      arr.forEach((element) => {
+        // --------- Add each result that has not already been
+        // --------- added to combinedResults to combinedResults
+        const titleAuthorId = `${element.title},${element.author}`;
+        if(!titleAuthorList.includes(titleAuthorId)) {
+          combinedResults.push(element);
+          titleAuthorList.push(titleAuthorId);
+        }
+      });
+    }
   });
   console.log(combinedResults);
 });
-
-
-//getResults();
