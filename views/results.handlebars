@@ -1,18 +1,19 @@
 <div class="container">
   <div class="row row-cols-3 g-4">
-    <h1>RESULTS!</h1>
-    {{#each Poem}}
-      <div class="col">
-          <div class="card-body">
-            <h5 class="card-title" id="title-{{this.id}}">{{this.id}}</h5>
-            <p class="card-text" id="desc-{{this.id}}">{{truncate this.lines}}</p>
-            {{#if ../loggedIn}}
-              <button class="btn btn-primary" id="btn-{{this.id}}">Save Poem!</button>
-            {{/if}}
+    {{#if emptyArray}}
+      {{#each emptyArray}}
+        <div class="col" id="result-block-{{this.id}}" hidden>
+            <div class="card-body">
+              <h5 class="card-title" id="title-{{this.id}}">TITLE</h5>
+              <p class="card-text" id="author-{{this.id}}">AUTHOR</p>
+              {{#if ../loggedIn}}
+                <button class="btn btn-primary" id="btn-{{this.id}}">Fave</button>
+              {{/if}}
+            </div>
           </div>
         </div>
-      </div>
-    {{/each}}
+      {{/each}}
+    {{/if}}
 </div>
 
 <script src="../js/results.js"></script>
