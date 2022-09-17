@@ -12,9 +12,8 @@ router.post("/", withAuth, async (req, res) => {
   try {
     const newPoem = await Poem.create({
       title,
-      image,
-      author: "James Baldwin ",
-      description,
+      author,
+      lines,
       UserId,
     });
 

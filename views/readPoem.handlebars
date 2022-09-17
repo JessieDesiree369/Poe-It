@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row row-cols-3 g-4">
+    <div class="col" id="thebigone" hidden>
+        <div class="card-body">
+          <h3 class="card-title" id="titleEl">TITLE</h3>
+          <h6 class="card-author" id="authorEl">AUTHOR</h6>
+          <p class="card-text" id = "poemText"> TEXT </p>
+          {{#if ../loggedIn}}
+            <button class="btn btn-primary" id="btn-{{this.id}}">Fave</button>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+</div>
+
+<script src="../js/readPoem.js"></script>
