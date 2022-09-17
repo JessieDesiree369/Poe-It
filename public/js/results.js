@@ -26,8 +26,6 @@ getAllResults().then((data) => {
     // --------- is actually an array/has any results
     if(Array.isArray(arr)) {
       arr.forEach((element) => {
-        console.log(element.title);
-        console.log(element.author);
         // --------- Add each result that has not already been
         // --------- added to combinedResults to combinedResults
         const titleAuthorId = `${element.title},${element.author}`;
@@ -36,7 +34,6 @@ getAllResults().then((data) => {
           titleAuthorList.push(titleAuthorId);
         }
       });
-
     }
   });
   console.log(combinedResults);
